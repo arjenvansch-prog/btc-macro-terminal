@@ -1,4 +1,8 @@
+import streamlit as st
 
+st.title("Mijn eerste Streamlit app 🚀")
+
+st.write("Hallo! Mijn app werkt.")
 import streamlit as st
 import pandas as pd
 import plotly.express as px
