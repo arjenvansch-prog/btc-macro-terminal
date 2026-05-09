@@ -24,26 +24,15 @@ import random
 st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 
 st.title("Bitcoin Macro Terminal")
+btc_price, btc_change = get_bitcoin_price()
 
 metrics = {
-    btc_price, btc_change = get_bitcoin_price()
-
-st.metric(
-    "Bitcoin Price",
-    f"${btc_price:,.0f}",
-    f"{btc_change:.2f}%"
-)
-    "ETF Inflow": (1850, 12.4),
-    "Whale Score": (72, 6.2),
-    "DXY": (99.4, -0.8),
-    "Fear & Greed": (46, 3.0),
+    "Bitcoin Price": (btc_price, btc_change),
     "Fed Outlook": (3.95, -0.2),
 }
 
 cols = st.columns(3)
-
 items = list(metrics.items())
-
 for i, (name, values) in enumerate(items):
     value, delta = values
     with cols[i % 3]:
