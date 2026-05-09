@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import plotly.express as px
+import yfinance as yf
 from datetime import datetime, timedelta
 import random
 @st.cache_data(ttl=60)
@@ -29,6 +30,11 @@ metrics = {
     "Bitcoin Price": (btc_price, btc_change),
     "Fed Outlook": (3.95, -0.2),
 }
+@st.cache_data
+def get_btc_history():
+    btc = yf.Ticker("BTC-USD")
+    hist = btc.history(period="1y")
+    return hist
 btc_history = get_btc_history()
 
 fig = px.line(
