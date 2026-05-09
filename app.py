@@ -39,11 +39,9 @@ btc_history = get_btc_history()
 
 fig = px.line(
     btc_history,
-    x="date",
-    y="price",
+    y="Close",
     title="Bitcoin Price - Last 30 Days",
 )
-
 st.plotly_chart(fig, use_container_width=True)
 cols = st.columns(3)
 items = list(metrics.items())
