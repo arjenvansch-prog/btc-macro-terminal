@@ -31,7 +31,16 @@ metrics = {
     "Bitcoin Price": (btc_price, btc_change),
     "Fed Outlook": (3.95, -0.2),
 }
+btc_history = get_btc_history()
 
+fig = px.line(
+    btc_history,
+    x="date",
+    y="price",
+    title="Bitcoin Price - Last 30 Days"
+)
+
+st.plotly_chart(fig, use_container_width=True)
 cols = st.columns(3)
 items = list(metrics.items())
 for i, (name, values) in enumerate(items):
