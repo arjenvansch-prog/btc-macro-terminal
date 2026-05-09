@@ -1,3 +1,4 @@
+import streamlit as st
 import requests
 @st.cache_data(ttl=60)
 def get_bitcoin_price():
