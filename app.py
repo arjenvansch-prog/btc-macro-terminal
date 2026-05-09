@@ -1,5 +1,9 @@
 import streamlit as st
 import requests
+import pandas as pd
+import plotly.express as px
+from datetime import datetime, timedelta
+import random
 @st.cache_data(ttl=60)
 def get_bitcoin_price():
     url = "https://api.coingecko.com/api/v3/simple/price"
@@ -16,12 +20,6 @@ def get_bitcoin_price():
     change = data["bitcoin"]["usd_24h_change"]
 
     return price, change
-import streamlit as st
-import pandas as pd
-import plotly.express as px
-from datetime import datetime, timedelta
-import random
-
 st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 
 st.title("Bitcoin Macro Terminal")
