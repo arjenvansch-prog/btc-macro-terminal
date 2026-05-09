@@ -1,26 +1,4 @@
 streamlit
 pandas
-numpy
 plotly
-yfinance
 requests
-import pandas as pd
-import plotly.express as px
-@st.cache_data(ttl=300)
-def get_btc_history():
-    url = "https://api.coingecko.com/api/v3/coins/bitcoin/market_chart"
-    params = {
-        "vs_currency": "usd",
-        "days": "30",
-        "interval": "daily"
-    }
-
-    response = requests.get(url, params=params, timeout=10)
-    data = response.json()
-
-    prices = data["prices"]
-
-    df = pd.DataFrame(prices, columns=["timestamp", "price"])
-    df["date"] = pd.to_datetime(df["timestamp"], unit="ms")
-
-    return df
