@@ -1,3 +1,20 @@
+import requests
+@st.cache_data(ttl=60)
+def get_bitcoin_price():
+    url = "https://api.coingecko.com/api/v3/simple/price"
+    params = {
+        "ids": "bitcoin",
+        "vs_currencies": "usd",
+        "include_24hr_change": "true"
+    }
+
+    response = requests.get(url, params=params, timeout=10)
+    data = response.json()
+
+    price = data["bitcoin"]["usd"]
+    change = data["bitcoin"]["usd_24h_change"]
+
+    return price, change
 import streamlit as st
 import pandas as pd
 import plotly.express as px
@@ -9,7 +26,13 @@ st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 st.title("Bitcoin Macro Terminal")
 
 metrics = {
-    "Bitcoin Price": (84250, 1.8),
+    btc_price, btc_change = get_bitcoin_price()
+
+st.metric(
+    "Bitcoin Price",
+    f"${btc_price:,.0f}",
+    f"{btc_change:.2f}%"
+)
     "ETF Inflow": (1850, 12.4),
     "Whale Score": (72, 6.2),
     "DXY": (99.4, -0.8),
