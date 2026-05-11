@@ -59,7 +59,7 @@ def get_fear_greed():
 
 if isinstance(btc_history.columns, pd.MultiIndex):
     btc_history.columns = btc_history.columns.droplevel(1)
-
+btc_history.columns = btc_history.columns.get_level_values(0)
 btc_history = btc_history.reset_index()
 
 fig = px.line(
