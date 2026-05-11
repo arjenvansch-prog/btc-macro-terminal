@@ -65,11 +65,11 @@ fig = px.line(
     btc_history,
     x="Date",
     y="Close",
-    title="Bitcoin Price - Last 30 Days"
+    title="Bitcoin Price - Last 30 Days",
 )
 
 st.plotly_chart(fig, use_container_width=True)
-
+fear_value, fear_classification = get_fear_greed()
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
     value=fear_value,
