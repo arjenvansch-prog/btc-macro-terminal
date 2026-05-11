@@ -74,8 +74,7 @@ fear_value, fear_classification = get_fear_greed()
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
     value=fear_value,
-    title={"text": f"Fear & Greed Index ({fear_label})"},
-    gauge={
+gauge={
         "axis": {"range": [0, 100]},
         "bar": {"thickness": 0.3},
         "steps": [
