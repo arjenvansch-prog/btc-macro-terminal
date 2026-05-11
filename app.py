@@ -94,7 +94,7 @@ Let daarom niet alleen op prijs, maar ook op:
 - trend boven/onder gemiddelde
 - macro en liquiditeit
 - derivatenmarkt
-""")
+"""),
 gauge={
         "axis": {"range": [0, 100]},
         "bar": {"thickness": 0.3},
