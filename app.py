@@ -95,7 +95,7 @@ Let daarom niet alleen op prijs, maar ook op:
 - macro en liquiditeit
 - derivatenmarkt
 """),
-gauge={
+gauge = {
         "axis": {"range": [0, 100]},
         "bar": {"thickness": 0.3},
 "steps": [
@@ -104,8 +104,7 @@ gauge={
     {"range": [50, 75], "color": "yellow"},
     {"range": [75, 100], "color": "green"}
                 ]
-        }
-)
+        } 
         
 st.plotly_chart(fig_gauge, use_container_width=True)
 cols = st.columns(3)
