@@ -58,6 +58,7 @@ fig = px.line(
     y="Close",
     title="Bitcoin Price - Last 30 Days",
 )
+
 st.plotly_chart(fig, use_container_width=True)
 fear_value, fear_label = get_fear_greed()
 
