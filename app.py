@@ -52,15 +52,6 @@ def get_fear_greed():
     value = int(data["data"][0]["value"])
     classification = data["data"][0]["value_classification"]
 
-return value, classification
-def get_fear_greed():
-    url = "https://api.alternative.me/fng/?limit=1"
-    response = requests.get(url, timeout=10)
-    data = response.json()
-
-    value = int(data["data"][0]["value"])
-    classification = data["data"][0]["value_classification"]
-
     return value, classification
 
 btc_history = get_btc_history()
