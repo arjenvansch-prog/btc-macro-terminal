@@ -51,7 +51,7 @@ def get_btc_history():
     data.reset_index(inplace=True)
 
     return data
-btc_history = get_btc_history()
+btc_history = get_btc_history() 
 @st.cache_data(ttl=300)
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
