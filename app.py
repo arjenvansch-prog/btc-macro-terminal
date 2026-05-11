@@ -105,7 +105,7 @@ gauge={
     {"range": [75, 100], "color": "green"},
         ]
     }
-))
+)
 
 st.plotly_chart(fig_gauge, use_container_width=True)
 cols = st.columns(3)
