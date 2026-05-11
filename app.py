@@ -31,16 +31,19 @@ metrics = {
     "Bitcoin Price": (btc_price, btc_change),
     "Fed Outlook": (3.95, -0.2),
 }
-@st.cache_data
+@st.cache_data(ttl=300)
 def get_btc_history():
-    hist = yf.download(
+    data = yf.download(
         "BTC-USD",
         period="1y",
         interval="1d",
         progress=False,
         threads=False
     )
-    return hist
+
+    data.reset_index(inplace=True)
+
+    return data
 
 @st.cache_data(ttl=300)
 def get_fear_greed():
@@ -54,13 +57,14 @@ def get_fear_greed():
 
     return value, classification
 
-btc_history = get_btc_history()
-fear_value, fear_label = get_fear_greed()
+if isinstance(btc_history.columns, pd.MultiIndex):
+    btc_history.columns = btc_history.columns.get_level_values(0)
 
 fig = px.line(
     btc_history,
+    x="Date",
     y="Close",
-    title="Bitcoin Price - Last 30 Days",
+    title="Bitcoin Price - Last 30 Days"
 )
 
 st.plotly_chart(fig, use_container_width=True)
