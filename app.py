@@ -2,6 +2,7 @@ import streamlit as st
 import requests
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import yfinance as yf
 from datetime import datetime, timedelta
 import random
@@ -36,13 +37,42 @@ def get_btc_history():
     hist = btc.history(period="1y")
     return hist
 btc_history = get_btc_history()
+@st.cache_data(ttl=300)
+def get_fear_greed():
+    url = "https://api.alternative.me/fng/"
+    
+    response = requests.get(url, timeout=10)
+    data = response.json()
 
+    value = int(data["data"][0]["value"])
+    classification = data["data"][0]["value_classification"]
+
+    return value, classification
 fig = px.line(
     btc_history,
     y="Close",
     title="Bitcoin Price - Last 30 Days",
 )
 st.plotly_chart(fig, use_container_width=True)
+fear_value, fear_label = get_fear_greed()
+
+fig_gauge = go.Figure(go.Indicator(
+    mode="gauge+number",
+    value=fear_value,
+    title={"text": f"Fear & Greed Index ({fear_label})"},
+    gauge={
+        "axis": {"range": [0, 100]},
+        "bar": {"thickness": 0.3},
+        "steps": [
+            {"range": [0, 25]},
+            {"range": [25, 50]},
+            {"range": [50, 75]},
+            {"range": [75, 100]}
+        ]
+    }
+))
+
+st.plotly_chart(fig_gauge, use_container_width=True)
 cols = st.columns(3)
 items = list(metrics.items())
 for i, (name, values) in enumerate(items):
