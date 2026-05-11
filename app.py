@@ -74,6 +74,26 @@ fear_value, fear_classification = get_fear_greed()
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
     value=fear_value,
+    st.divider()
+
+st.subheader("🏦 Institutionele Bitcoin-markt")
+
+st.info(
+    "Vanaf 29 mei 2026 verandert de Bitcoin-marktstructuur: "
+    "CME gaat crypto futures en opties 24/7 verhandelen. "
+    "Daardoor worden oude CME weekend-gaps minder belangrijk."
+)
+
+st.write("""
+Bitcoin wordt steeds meer een institutionele macro-asset.
+
+Let daarom niet alleen op prijs, maar ook op:
+- volatiliteit
+- volume
+- trend boven/onder gemiddelde
+- macro en liquiditeit
+- derivatenmarkt
+""")
 gauge={
         "axis": {"range": [0, 100]},
         "bar": {"thickness": 0.3},
