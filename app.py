@@ -41,7 +41,7 @@ def get_btc_history():
         threads=False
     )
     return hist
-btc_history = get_btc_history()
+
 @st.cache_data(ttl=300)
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
@@ -53,6 +53,8 @@ def get_fear_greed():
     classification = data["data"][0]["value_classification"]
 
     return value, classification
+    btc_history = get_btc_history()
+fear_value, fear_label = get_fear_greed()
 fig = px.line(
     btc_history,
     y="Close",
@@ -60,7 +62,6 @@ fig = px.line(
 )
 
 st.plotly_chart(fig, use_container_width=True)
-fear_value, fear_label = get_fear_greed()
 
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
