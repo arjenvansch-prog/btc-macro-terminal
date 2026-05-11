@@ -33,8 +33,13 @@ metrics = {
 }
 @st.cache_data
 def get_btc_history():
-    btc = yf.Ticker("BTC-USD")
-    hist = btc.history(period="1y")
+    hist = yf.download(
+        "BTC-USD",
+        period="1y",
+        interval="1d",
+        progress=False,
+        threads=False
+    )
     return hist
 btc_history = get_btc_history()
 @st.cache_data(ttl=300)
