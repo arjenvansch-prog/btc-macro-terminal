@@ -74,7 +74,8 @@ fear_value, fear_classification = get_fear_greed()
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
     value=fear_value,
-    st.divider()
+))
+st.divider()
 
 st.subheader("🏦 Institutionele Bitcoin-markt")
 
