@@ -26,7 +26,14 @@ st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 
 st.title("Bitcoin Macro Terminal")
 btc_price, btc_change = get_bitcoin_price()
-
+fear_value, fear_label = get_fear_greed()
+if btc_change > 0 and fear_value > 50:
+    regime = "🟢 Risk-On"
+elif btc_change < 0 and fear_value < 50:
+    regime = "🔴 Risk-Off"
+else:
+    regime = "🟡 Neutral"
+    st.subheader(f"Market Regime: {regime}")
 metrics = {
     "Bitcoin Price": (btc_price, btc_change),
     "Fed Outlook": (3.95, -0.2),
