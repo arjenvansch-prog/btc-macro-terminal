@@ -98,11 +98,11 @@ Let daarom niet alleen op prijs, maar ook op:
 gauge={
         "axis": {"range": [0, 100]},
         "bar": {"thickness": 0.3},
-        "steps": [
-            {"range": [0, 25]},
-            {"range": [25, 50]},
-            {"range": [50, 75]},
-            {"range": [75, 100]}
+"steps": [
+    {"range": [0, 25], "color": "red"},
+    {"range": [25, 50], "color": "orange"},
+    {"range": [50, 75], "color": "yellow"},
+    {"range": [75, 100], "color": "green"},
         ]
     }
 ))
