@@ -55,14 +55,13 @@ btc_history = get_btc_history()
 @st.cache_data(ttl=300)
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
-    
-    response = requests.get(url, timeout=10)
+    response = requests.get(url)
     data = response.json()
 
     value = int(data["data"][0]["value"])
-    classification = data["data"][0]["value_classification"]
+    label = data["data"][0]["value_classification"]
 
-    return value, classification
+    return value, label
 
 if isinstance(btc_history.columns, pd.MultiIndex):
     btc_history.columns = btc_history.columns.droplevel(1)
