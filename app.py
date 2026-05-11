@@ -26,7 +26,7 @@ st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 
 st.title("Bitcoin Macro Terminal")
 btc_price, btc_change = get_bitcoin_price()
-fear_value, fear_label = get_fear_greed()
+
 if btc_change > 0 and fear_value > 50:
     regime = "🟢 Risk-On"
 elif btc_change < 0 and fear_value < 50:
@@ -62,7 +62,6 @@ def get_fear_greed():
     label = data["data"][0]["value_classification"]
 
     return value, label
-fear_value, fear_label = get_fear_greed()
 if isinstance(btc_history.columns, pd.MultiIndex):
     btc_history.columns = btc_history.columns.droplevel(1)
 btc_history.columns = btc_history.columns.get_level_values(0)
