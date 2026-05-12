@@ -31,6 +31,7 @@ def get_fear_greed():
     label = data["data"][0]["value_classification"]
 
     return value, label
+    
 st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 @st.cache_data(ttl=300)
 def get_btc_candles(period="7d", interval="1h"):
