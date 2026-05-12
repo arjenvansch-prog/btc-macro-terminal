@@ -73,30 +73,39 @@ def get_btc_history():
     data.reset_index(inplace=True)
 
     return data
-btc_history = get_btc_candles()
-timeframe = st.radio(
-    "📅 Kies periode:",
-    ["1U", "1D", "1W", "1M", "1Y", "ALL"],
-    horizontal=True
+    @st.cache_data(ttl=300)
+def get_fear_greed():
+    url = "https://api.alternative.me/fng/"
+    response = requests.get(url)
+    data = response.json()
+
+    value = int(data["data"][0]["value"])
+    label = data["data"][0]["value_classification"]
+
+    return value, label
+
+
+if isinstance(btc_history.columns, pd.MultiIndex):
+    btc_history.columns = btc_history.columns.get_level_values(0)
+
+btc_history = btc_history.reset_index()
+
+fig = go.Figure(data=[go.Candlestick(
+    x=btc_history["Date"],
+    open=btc_history["Open"],
+    high=btc_history["High"],
+    low=btc_history["Low"],
+    close=btc_history["Close"]
+)])
+
+fig.update_layout(
+    title="Bitcoin Candlestick Chart",
+    xaxis_title="Datum",
+    yaxis_title="Prijs (USD)",
+    height=600
 )
 
-if timeframe == "1U":
-    filtered_data = btc_history.tail(24)
-
-elif timeframe == "1D":
-    filtered_data = btc_history.tail(24)
-
-elif timeframe == "1W":
-    filtered_data = btc_history.tail(7)
-
-elif timeframe == "1M":
-    filtered_data = btc_history.tail(30)
-
-elif timeframe == "1Y":
-    filtered_data = btc_history.tail(365)
-
-else:
-    filtered_data = btc_history
+st.plotly_chart(fig, use_container_width=True)
 @st.cache_data(ttl=300)
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
