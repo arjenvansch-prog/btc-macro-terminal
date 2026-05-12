@@ -73,7 +73,7 @@ def get_btc_history():
     data.reset_index(inplace=True)
 
     return data
-btc_history = get_btc_history() 
+btc_history = get_btc_candles()
 timeframe = st.radio(
     "📅 Kies periode:",
     ["1U", "1D", "1W", "1M", "1Y", "ALL"],
