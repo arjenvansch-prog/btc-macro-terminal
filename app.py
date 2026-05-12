@@ -84,7 +84,7 @@ if timeframe == "1U":
     filtered_data = btc_history.tail(24)
 
 elif timeframe == "1D":
-    filtered_data = btc_history.tail(1)
+    filtered_data = btc_history.tail(24)
 
 elif timeframe == "1W":
     filtered_data = btc_history.tail(7)
