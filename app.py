@@ -32,7 +32,20 @@ def get_fear_greed():
 
     return value, label
 st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
+@st.cache_data(ttl=300)
+def get_btc_candles():
+    data = yf.download(
+        "BTC-EUR",
+        period="7d",
+        interval="1h",
+        progress=False,
+        threads=False
+    )
 
+    if data.empty:
+        return None
+
+    return data
 st.title("Bitcoin Macro Terminal")
 btc_price, btc_change = get_bitcoin_price()
 fear_value, fear_label = get_fear_greed()
@@ -76,11 +89,18 @@ if isinstance(btc_history.columns, pd.MultiIndex):
 btc_history.columns = btc_history.columns.get_level_values(0)
 btc_history = btc_history.reset_index()
 
-fig = px.line(
-    btc_history,
-    x="Date",
-    y="Close",
-    title="Bitcoin Price - Last 30 Days",
+fig = go.Figure(data=[go.Candlestick(
+    x=btc_history["Date"],
+    open=btc_history["Open"],
+    high=btc_history["High"],
+    low=btc_history["Low"],
+    close=btc_history["Close"]
+)])
+
+fig.update_layout(
+    title="Bitcoin Candlestick Chart",
+    xaxis_title="Date",
+    yaxis_title="Price"
 )
 
 st.plotly_chart(fig, use_container_width=True)
