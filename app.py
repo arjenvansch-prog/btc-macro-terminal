@@ -136,7 +136,21 @@ fig = go.Figure(data=[go.Candlestick(
 fig.update_layout(
     title="Bitcoin Candlestick Chart",
     xaxis_title="Date",
-    yaxis_title="Price"
+    yaxis_title="Price",
+    xaxis=dict(
+        rangeselector=dict(
+            buttons=list([
+                dict(count=1, label="1D", step="day", stepmode="backward"),
+                dict(count=7, label="1W", step="day", stepmode="backward"),
+                dict(count=1, label="1M", step="month", stepmode="backward"),
+                dict(count=6, label="6M", step="month", stepmode="backward"),
+                dict(count=1, label="1Y", step="year", stepmode="backward"),
+                dict(step="all", label="ALL")
+            ])
+        ),
+        rangeslider=dict(visible=True),
+        type="date"
+    )
 )
 
 fear_value, fear_classification = get_fear_greed()
