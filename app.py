@@ -22,7 +22,7 @@ def get_bitcoin_price():
             return None, None
 
     price = data["bitcoin"]["usd"]
-        change = data["bitcoin"]["usd_24h_change"]
+    change = data["bitcoin"]["usd_24h_change"]
 
         return price, change
 def get_fear_greed():
