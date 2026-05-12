@@ -22,7 +22,7 @@ def get_bitcoin_price():
     change = data["bitcoin"]["usd_24h_change"]
 
     return price, change
-    def get_fear_greed():
+def get_fear_greed():
     url = "https://api.alternative.me/fng/"
     response = requests.get(url)
     data = response.json()
