@@ -33,11 +33,11 @@ def get_fear_greed():
     return value, label
 st.set_page_config(page_title="BTC Macro Terminal", layout="wide")
 @st.cache_data(ttl=300)
-def get_btc_candles():
+def get_btc_candles(period="7d", interval="1h"):
     data = yf.download(
         "BTC-EUR",
-        period="7d",
-        interval="1h",
+        period=period,
+        interval=interval,
         progress=False,
         threads=False
     )
