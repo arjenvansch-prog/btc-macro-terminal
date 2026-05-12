@@ -84,7 +84,8 @@ def get_fear_greed():
     value = int(data["data"][0]["value"])
     label = data["data"][0]["value_classification"]
     return value, label
-fear_value, fear_label = get_fear_greed()
+btc_history = get_btc_history()
+
 if isinstance(btc_history.columns, pd.MultiIndex):
     btc_history.columns = btc_history.columns.get_level_values(0)
 
