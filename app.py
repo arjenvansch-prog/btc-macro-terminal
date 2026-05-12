@@ -95,7 +95,7 @@ fig = go.Figure(data=[go.Candlestick(
     open=btc_history["Open"],
     high=btc_history["High"],
     low=btc_history["Low"],
-    close=btc_history["Close"]
+    close=btc_history["Close"],
 )])
 
 fig.update_layout(
