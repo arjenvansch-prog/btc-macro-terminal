@@ -18,10 +18,13 @@ def get_bitcoin_price():
     response = requests.get(url, params=params, timeout=10)
     data = response.json()
 
-    price = data["bitcoin"]["usd"]
-    change = data["bitcoin"]["usd_24h_change"]
+    if "bitcoin" not in data:
+            return None, None
 
-    return price, change
+    price = data["bitcoin"]["usd"]
+        change = data["bitcoin"]["usd_24h_change"]
+
+        return price, change
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
     response = requests.get(url)
