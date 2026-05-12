@@ -74,6 +74,29 @@ def get_btc_history():
 
     return data
 btc_history = get_btc_history() 
+timeframe = st.radio(
+    "📅 Kies periode:",
+    ["1U", "1D", "1W", "1M", "1Y", "ALL"],
+    horizontal=True
+)
+
+if timeframe == "1U":
+    filtered_data = btc_history.tail(24)
+
+elif timeframe == "1D":
+    filtered_data = btc_history.tail(1)
+
+elif timeframe == "1W":
+    filtered_data = btc_history.tail(7)
+
+elif timeframe == "1M":
+    filtered_data = btc_history.tail(30)
+
+elif timeframe == "1Y":
+    filtered_data = btc_history.tail(365)
+
+else:
+    filtered_data = btc_history
 @st.cache_data(ttl=300)
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
