@@ -175,7 +175,6 @@ gauge = {
                 ]
         } 
         
-st.plotly_chart(fig_gauge, use_container_width=True, key="fear_gauge")
 cols = st.columns(3)
 items = list(metrics.items())
 for i, (name, values) in enumerate(items):
