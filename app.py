@@ -53,9 +53,9 @@ def get_btc_candles(period="7d", interval="1h"):
 st.title("Bitcoin Macro Terminal")
 btc_price, btc_change = get_bitcoin_price()
 fear_value, fear_label = get_fear_greed()
-if btc_change > 0 and fear_value > 50:
+if btc_change is not None and btc_change > 0 and fear_value > 50:
     regime = "🟢 Risk-On"
-elif btc_change < 0 and fear_value < 50:
+elif btc_change is not None and btc_change < 0 and fear_value < 50:
     regime = "🔴 Risk-Off"
 else:
     regime = "🟡 Neutral"
