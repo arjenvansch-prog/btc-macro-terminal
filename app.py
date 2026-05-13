@@ -94,22 +94,6 @@ if isinstance(btc_history.columns, pd.MultiIndex):
 
 btc_history = btc_history.reset_index()
 
-fig = go.Figure(data=[go.Candlestick(
-    x=btc_history["Date"],
-    open=btc_history["Open"],
-    high=btc_history["High"],
-    low=btc_history["Low"],
-    close=btc_history["Close"],
-)])
-
-fig.update_layout(
-    title="Bitcoin Candlestick Chart",
-    xaxis_title="Datum",
-    yaxis_title="Prijs (USD)",
-    height=600
-)
-
-st.plotly_chart(fig, use_container_width=True)
 @st.cache_data(ttl=300)
 def get_fear_greed():
     url = "https://api.alternative.me/fng/"
