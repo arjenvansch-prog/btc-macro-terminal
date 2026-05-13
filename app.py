@@ -136,7 +136,13 @@ fig.update_layout(
         type="date"
     )
 )
-st.plotly_chart(fig, use_container_width=True, key="btc_chart")
+st.plotly_chart(
+    fig,
+    use_container_width=True,
+    config={
+        "displayModeBar": False
+    }
+)
 
 fear_value, fear_classification = get_fear_greed()
 fig_gauge = go.Figure(go.Indicator(
