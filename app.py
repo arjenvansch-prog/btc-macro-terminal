@@ -59,6 +59,34 @@ elif btc_change is not None and btc_change < 0 and fear_value < 50:
     regime = "🔴 Risk-Off"
 else:
     regime = "🟡 Neutral"
+st.subheader("📊 Bitcoin Macro Signalen")
+
+with st.expander("❓ ETF-instroom"):
+    st.write("""
+    ETF-instroom laat zien hoeveel geld grote beleggers via Bitcoin ETF’s investeren.
+    Als ETF’s veel BTC kopen, kan dat de prijs ondersteunen.
+    """)
+
+with st.expander("❓ DXY - Dollar Index"):
+    st.write("""
+    DXY meet de kracht van de Amerikaanse dollar.
+    Een sterke dollar is vaak minder gunstig voor Bitcoin.
+    """)
+
+with st.expander("❓ M2 Liquiditeit"):
+    st.write("""
+    Meer liquiditeit betekent vaak meer geld richting Bitcoin en aandelen.
+    """)
+
+with st.expander("❓ Fear & Greed Index"):
+    st.write("""
+    Deze index meet het marktsentiment van crypto beleggers.
+    """)
+
+with st.expander("❓ Whale wallets"):
+    st.write("""
+    Grote Bitcoin wallets kunnen invloed hebben op de markt.
+    """)
     st.subheader(f"Market Regime: {regime}")
 metrics = {
     "Bitcoin Price": (btc_price, btc_change),
