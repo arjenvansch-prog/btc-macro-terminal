@@ -118,22 +118,32 @@ fig = go.Figure(data=[go.Candlestick(
 )])
 
 fig.update_layout(
-    title="Bitcoin Candlestick Chart",
-    xaxis_title="Date",
-    yaxis_title="Price",
+    template="plotly_dark",
+    height=650,
+
+    margin=dict(
+        l=10,
+        r=10,
+        t=20,
+        b=20
+    ),
+
     xaxis=dict(
-        rangeselector=dict(
-            buttons=list([
-                dict(count=1, label="1D", step="day", stepmode="backward"),
-                dict(count=7, label="1W", step="day", stepmode="backward"),
-                dict(count=1, label="1M", step="month", stepmode="backward"),
-                dict(count=6, label="6M", step="month", stepmode="backward"),
-                dict(count=1, label="1Y", step="year", stepmode="backward"),
-                dict(step="all", label="ALL")
-            ])
-        ),
-        rangeslider=dict(visible=True),
-        type="date"
+        rangeslider_visible=False,
+        showgrid=False
+    ),
+
+    yaxis=dict(
+        side="right",
+        showgrid=True,
+        gridcolor="rgba(255,255,255,0.08)"
+    ),
+
+    paper_bgcolor="#0E1117",
+    plot_bgcolor="#0E1117",
+
+    font=dict(
+        size=14
     )
 )
 st.plotly_chart(
