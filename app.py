@@ -143,7 +143,7 @@ fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
     value=fear_value,
 ))
-st.plotly_chart(fig_st.plotly_chart(fig_gauge, use_container_width=True, key="fear_gauge")
+st.plotly_chart(fig_gauge, use_container_width=True, key="fear_gauge")
 st.divider()
 
 st.subheader("🏦 Institutionele Bitcoin-markt")
