@@ -129,9 +129,20 @@ fig.update_layout(
     ),
 
     xaxis=dict(
-        rangeslider_visible=False,
-        showgrid=False
+    rangeselector=dict(
+        buttons=list([
+            dict(count=1, label="1D", step="day", stepmode="backward"),
+            dict(count=7, label="1W", step="day", stepmode="backward"),
+            dict(count=1, label="1M", step="month", stepmode="backward"),
+            dict(count=6, label="6M", step="month", stepmode="backward"),
+            dict(count=1, label="1Y", step="year", stepmode="backward"),
+            dict(step="all", label="ALL")
+        ])
     ),
+    rangeslider=dict(visible=True),
+    type="date",
+    showgrid=False
+),
 
     yaxis=dict(
         side="right",
