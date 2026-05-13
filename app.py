@@ -136,14 +136,14 @@ fig.update_layout(
         type="date"
     )
 )
-st.plotly_chart(fig, use_container_width=True)
+st.plotly_chart(fig, use_container_width=True, key="btc_chart")
 
 fear_value, fear_classification = get_fear_greed()
 fig_gauge = go.Figure(go.Indicator(
     mode="gauge+number",
     value=fear_value,
 ))
-st.plotly_chart(fig_gauge, use_container_width=True)
+st.plotly_chart(fig_st.plotly_chart(fig_gauge, use_container_width=True, key="fear_gauge")
 st.divider()
 
 st.subheader("🏦 Institutionele Bitcoin-markt")
